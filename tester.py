@@ -30,7 +30,9 @@ def parse_profiel_info():
     with open(fn, "r") as f:
         soup = bs4.BeautifulSoup(f.read(), "lxml")
 
-        info_index = soup.find("div", attrs={"id": "profiel"}, class_="profile-columns")
+        info_index = soup.find(
+            "div", attrs={"id": "profiel"}, class_="profile-columns"
+        )
 
         categories = list(map(lambda x: x.text, info_index.findAll("h3")))
 
@@ -41,18 +43,18 @@ def parse_profiel_info():
         print(meta_data["Details"])
         # for k, v in meta_data.items():
         #     print(k)
-            # print(k,v)
-            # if k == "Algemeen":
-            #     rows_info = [
-            #         list(map(lambda x: x.strip(), i.text.split(":")))
-            #         for i in info_index.find("div", class_="col-sm-4").findAll(
-            #             "div", class_="row"
-            #         )
-            #     ]
+        # print(k,v)
+        # if k == "Algemeen":
+        #     rows_info = [
+        #         list(map(lambda x: x.strip(), i.text.split(":")))
+        #         for i in info_index.find("div", class_="col-sm-4").findAll(
+        #             "div", class_="row"
+        #         )
+        #     ]
 
-            #     for i in rows_info:
-            #         k, v = i
-            #         print(k, v)
+        #     for i in rows_info:
+        #         k, v = i
+        #         print(k, v)
 
 
 parse_profiel_info()

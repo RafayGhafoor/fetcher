@@ -6,7 +6,9 @@ import sys
 import time
 import re
 
-listing_url = "https://www.bedrijfsovernameregister.nl/bedrijven-te-koop-aangeboden"
+listing_url = (
+    "https://www.bedrijfsovernameregister.nl/bedrijven-te-koop-aangeboden"
+)
 
 page_categories = (
     "cijfers",
@@ -24,17 +26,21 @@ def get_total_pages_count():
         ).content,
         "lxml",
     )
-    pages_count = soup.find("div", attrs={"id": "paginat"}).findAll("span")[-1].text
+    pages_count = (
+        soup.find("div", attrs={"id": "paginat"}).findAll("span")[-1].text
+    )
     partitioner = pages_count.split("totaal")
     if not partitioner:
         sys.exit("Some error occurred while finding total pages count.")
-    page_pattern = re.search("\d+", partitioner[1])
+    page_pattern = re.search(r"\d+", partitioner[1])
     if page_pattern:
         return math.ceil(int(page_pattern.group()) / 10)
 
 
 def get_urls_links():
-    urls = [f"{listing_url}/page-{i}" for i in range(2, get_total_pages_count())]
+    urls = [
+        f"{listing_url}/page-{i}" for i in range(2, get_total_pages_count())
+    ]
     # urls = [f"{listing_url}/page-{i}" for i in range(2, 3)]
     urls.insert(0, listing_url)
     return urls
@@ -63,6 +69,7 @@ def get_urls_links():
 #                 for links in meta_data:
 #                     print(links)
 #                     f.write(links + "\n")
+
 
 async def get_page_urls(url):
     async with httpx.AsyncClient() as client:

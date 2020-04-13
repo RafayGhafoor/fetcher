@@ -1,7 +1,7 @@
 """
     Parser for profile page components.
-    
-    Profile page is composed of three components 
+
+    Profile page is composed of three components
     i.e., Algemeen (General), Details, Extra informatie (Extra Information)
 """
 import time
