@@ -21,7 +21,7 @@ repos:
     rev: 19.10b0
     hooks:
       - id: black
-        args: [-l, "79"]
+        args: [-l, "85"]
   - repo: https://gitlab.com/smop/pre-commit-hooks
     rev: v1.0.0
     hooks:
@@ -35,5 +35,5 @@ repos:
     rev: v1.6.0
     hooks:
       - id: blacken-docs
-        args: [-l, "79", '-E']
+        args: [-l, "85", '-E']
         # additional_dependencies: [black==...]

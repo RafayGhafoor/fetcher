@@ -1,10 +1,13 @@
 import httpx
 import bs4
+import asyncio
+from utils import newlines_to_sentences, prettify, normalize_text
 
+client = httpx.AsyncClient(timeout=300)
 page_prefix = "cijfers"
 
 
-def parse_details_component(html_content):
+async def parse_details_component(html_content):
     meta_data = {}
     for i in html_content.findAll("div", class_="form-group"):
         key = i.find("strong").text.strip()
@@ -14,48 +17,83 @@ def parse_details_component(html_content):
         for k, v in zip(keys, values):
             k, v = k.text.strip(), v.text.strip()
             meta_data[key][k] = v
+    text = ""
+    for k, v in meta_data.items():
+        k = normalize_text(k)
+        text += f"<{k}>"
+        for k1, v1 in v.items():
+            k1 = normalize_text(k1)
+            text += f"<{k1}>{v1}</{k1}>"
+        text += f"</{k}>"
 
-    return meta_data
+    return prettify(text, "details")
 
 
-def parse_facts_component(html_content):
+async def parse_facts_component(html_content):
     meta_data = {}
     elem = html_content.find("ol", class_="chart")
+
     meta_data[html_content.find("strong").text.strip()] = [
         i.text.strip() for i in elem.findAll("li")
     ]
+
     elem_2 = html_content.findAll("div", class_="form-group")[1]
+
     meta_data[elem_2.find("strong").text.strip()] = [
         i.text.strip() for i in elem_2.findAll("li")
     ]
 
+    text = ""
+    for k, v in meta_data.items():
+        k = normalize_text(k)
+        text += f"<{k}>"
+        for i in v:
+            if not i:
+                continue
+            text += "<value>"
+            text += f"{i}"
+            text += "</value>"
+        text += f"</{k}>"
 
-def parse_short_term_improvements_component(html_content):
-    tag = "Korte termijn verbeteringen"
-    return html_content.text.strip()
+    return prettify(text, "facts")
 
 
-def parse_numbers_page(link):
-    with open("numbers.html", "r") as f:
-        soup = bs4.BeautifulSoup(f.read(), "lxml")
+async def parse_short_term_improvements_component(html_content):
+    heading = "short_term_improvements"
+    xml_data = newlines_to_sentences(html_content.text.strip())
+    return prettify(f"<{heading}>{xml_data}</{heading}>", "short_term_improvements")
+
+
+async def parse_numbers_page(link):
+    try:
+        resp = await client.get(f"{link}/{page_prefix}.html")
+        soup = bs4.BeautifulSoup(resp.content, "lxml")
         info_index = soup.find(
             "div", attrs={"id": page_prefix}, class_="profile-columns"
         )
 
-        categories = list(
-            map(lambda x: x.text.strip(), info_index.findAll("h3"))
-        )
+        categories = list(map(lambda x: x.text.strip(), info_index.findAll("h3")))
 
         rows_info = info_index.findAll("div", class_="col-sm-4")
 
         meta_data = {k: v for k, v in zip(categories, rows_info)}
 
-        # parse_details_component(meta_data["Details"])
-
-        # parse_facts_component(meta_data["Feiten"])
-        parse_short_term_improvements_component(
+        details_info = await parse_details_component(meta_data["Details"])
+        facts_info = await parse_facts_component(meta_data["Feiten"])
+        sti_info = await parse_short_term_improvements_component(
             meta_data["Korte termijn verbeteringen"]
         )
+        return prettify(f"{details_info}\n{facts_info}\n{sti_info}\n", "numbers")
+    except Exception as e:
+        print(e)
 
 
-parse_numbers_page(1)
+async def main():
+    link = "https://www.bedrijfsovernameregister.nl/bedrijven-te-koop-aangeboden/bosn14js154a/kleinschalig-universeel-garagebedrijf-te-koop-aangeboden"
+    info = await parse_numbers_page(link)
+    with open("02 - " + __file__.replace(".py", ".xml"), "w") as f:
+        f.write(info)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

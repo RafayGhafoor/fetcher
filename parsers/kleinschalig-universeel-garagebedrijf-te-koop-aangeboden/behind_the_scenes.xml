@@ -1,0 +1,184 @@
+<behind_the_scenes>
+ <stat>
+  <description>
+   De bedrijfscultuur is formeel
+  </description>
+  <value>
+   0.0
+  </value>
+  <description>
+   De bedrijfscultuur is informeel
+  </description>
+  <value>
+   10.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit autobedrijf exporteert
+  </description>
+  <value>
+   1.0
+  </value>
+  <description>
+   Dit autobedrijf is regionaal of in Nederland actief
+  </description>
+  <value>
+   9.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit autobedrijf heeft veel grote klanten
+  </description>
+  <value>
+   1.0
+  </value>
+  <description>
+   Dit autobedrijf heeft weinig grote klanten
+  </description>
+  <value>
+   9.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   De medewerkers zijn relatief 'oud'
+  </description>
+  <value>
+   1.5
+  </value>
+  <description>
+   De medewerkers zijn relatief 'jong'
+  </description>
+  <value>
+   8.5
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit autobedrijf is innovatief
+  </description>
+  <value>
+   5.0
+  </value>
+  <description>
+   Dit autobedrijf is ambachtelijk
+  </description>
+  <value>
+   5.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Het aantal klanten stijgt
+  </description>
+  <value>
+   5.5
+  </value>
+  <description>
+   Het aantal klanten daalt
+  </description>
+  <value>
+   4.5
+  </value>
+ </stat>
+ <stat>
+  <description>
+   De markt van dit autobedrijf groeit
+  </description>
+  <value>
+   6.5
+  </value>
+  <description>
+   De markt van dit autobedrijf krimpt
+  </description>
+  <value>
+   3.5
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit autobedrijf is kennisintensief
+  </description>
+  <value>
+   8.0
+  </value>
+  <description>
+   Dit autobedrijf is arbeidsintensief
+  </description>
+  <value>
+   2.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Er zijn terugkerende klanten
+  </description>
+  <value>
+   8.5
+  </value>
+  <description>
+   Klanten kopen eenmalig
+  </description>
+  <value>
+   1.5
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit autobedrijf heeft langdurige relaties met klanten
+  </description>
+  <value>
+   8.5
+  </value>
+  <description>
+   Dit autobedrijf kent zijn klanten nauwelijks
+  </description>
+  <value>
+   1.5
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit autobedrijf heeft veel kleine klanten
+  </description>
+  <value>
+   9.0
+  </value>
+  <description>
+   Dit autobedrijf heeft weinig kleine klanten
+  </description>
+  <value>
+   1.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Door unieke toegevoegde waarde speelt prijs geen rol
+  </description>
+  <value>
+   9.5
+  </value>
+  <description>
+   Klanten kopen vanwege 'lage' prijzen bij dit bedrijf
+  </description>
+  <value>
+   0.5
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Medewerkers zijn zeer betrokken
+  </description>
+  <value>
+   9.5
+  </value>
+  <description>
+   Er geldt een 9 tot 5 mentaliteit
+  </description>
+  <value>
+   0.5
+  </value>
+ </stat>
+</behind_the_scenes>

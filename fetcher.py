@@ -1,3 +1,4 @@
+"""Fetches all the link to webpages on the website."""
 import httpx
 import math
 import bs4
@@ -6,9 +7,7 @@ import sys
 import time
 import re
 
-listing_url = (
-    "https://www.bedrijfsovernameregister.nl/bedrijven-te-koop-aangeboden"
-)
+listing_url = "https://www.bedrijfsovernameregister.nl/bedrijven-te-koop-aangeboden"
 
 page_categories = (
     "cijfers",
@@ -26,9 +25,7 @@ def get_total_pages_count():
         ).content,
         "lxml",
     )
-    pages_count = (
-        soup.find("div", attrs={"id": "paginat"}).findAll("span")[-1].text
-    )
+    pages_count = soup.find("div", attrs={"id": "paginat"}).findAll("span")[-1].text
     partitioner = pages_count.split("totaal")
     if not partitioner:
         sys.exit("Some error occurred while finding total pages count.")
@@ -38,37 +35,9 @@ def get_total_pages_count():
 
 
 def get_urls_links():
-    urls = [
-        f"{listing_url}/page-{i}" for i in range(2, get_total_pages_count())
-    ]
-    # urls = [f"{listing_url}/page-{i}" for i in range(2, 3)]
+    urls = [f"{listing_url}/page-{i}" for i in range(2, get_total_pages_count())]
     urls.insert(0, listing_url)
     return urls
-
-
-# async def get_page_urls(url):
-#     async with httpx.AsyncClient() as client:
-#         resp = await client.get(url, timeout=30)
-#         soup = bs4.BeautifulSoup(resp.content, "lxml")
-#         return list(
-#             map(
-#                 lambda x: x.a.get("href"),
-#                 soup.findAll("div", class_="thumb-block click-area"),
-#             )
-#         )
-
-
-# async def get_all_pages():
-#     content_urls = await asyncio.gather(
-#         *[get_page_urls(url) for url in get_urls_links()]
-#     )
-#     with open("links.txt", "a") as f:
-#         for meta_data in content_urls:
-#             print(".", end="")
-#             if meta_data:
-#                 for links in meta_data:
-#                     print(links)
-#                     f.write(links + "\n")
 
 
 async def get_page_urls(url):

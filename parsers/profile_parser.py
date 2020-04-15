@@ -2,7 +2,7 @@
     Parser for profile page components.
 
     Profile page is composed of three components
-    i.e., Algemeen (General), Details, Extra informatie (Extra Information)
+    i.e., Algemeen (General), Details, Extra informatie (Extra Information) [Fetched from last tab]
 """
 from alive_progress import alive_bar
 import time
@@ -11,6 +11,7 @@ import httpx
 import bs4
 import asyncio
 import re
+from utils import normalize_text
 
 client = httpx.AsyncClient(timeout=300)
 
@@ -80,30 +81,15 @@ async def parse_profile_page_info(link, progress):
         progress()
 
 
-def normalize(text):
-    output = re.findall(r"\w+", text)
-    if output:
-        return "_".join(output)
-
-
 async def fetcher(links):
-    max_requests_per_second = 100
+
     total_links = len(links)
-    completed_links = 0
     with alive_bar(total_links) as bar:
-        # while completed_links < total_links:
-        # a = time.time()
-        # print(
-        #     f"Executing range {completed_links} - {completed_links + max_requests_per_second}"
-        # )
         data = await asyncio.gather(
-            *[
-                parse_profile_page_info(url.strip(), progress=bar)
-                for url in links
-            ]
+            *[parse_profile_page_info(url.strip(), progress=bar) for url in links]
         )
 
-        with open("details_page.xml", "a") as f:
+        with open("01 - details_page.xml", "a") as f:
             for info in data:
                 if not info:
                     continue
@@ -111,12 +97,12 @@ async def fetcher(links):
                 for k, v in info.items():
                     if isinstance(v, dict):
                         for k1, v1 in v.items():
-                            k1 = normalize(k1)
+                            k1 = normalize_text(k1)
                             if not isinstance(v1, dict):
                                 f.write(f"<{k1}>{v1}</{k1}>\n")
                             else:
                                 for k2, v2 in v1.items():
-                                    k2 = normalize(k2)
+                                    k2 = normalize_text(k2)
                                     if not isinstance(v2, list):
                                         f.write(f"<{k2}>{v2}</{k2}>\n")
                                     else:
@@ -126,13 +112,16 @@ async def fetcher(links):
                         f.write(f"<link>{v}</link>\n")
                 f.write("</item>\n\n")
 
-            # completed_links += max_requests_per_second
-            # print(time.time() - a)
     await client.aclose()
 
 
 if __name__ == "__main__":
-    with open("links.txt", "r") as f:
-        asyncio.run(fetcher(links=f.readlines()[1:10]))
-
-        # asyncio.run(fetcher(links=["https://www.bedrijfsovernameregister.nl/bedrijven-te-koop-aangeboden/bosn19srg77g/goedlopend-kleinschalig-fietsverhuurbedrijf-te-koop-aangeboden-in-amsterdam"]))
+    asyncio.run(
+        fetcher(
+            [
+                "https://www.bedrijfsovernameregister.nl/bedrijven-te-koop-aangeboden/bosn14js154a/kleinschalig-universeel-garagebedrijf-te-koop-aangeboden"
+            ]
+        )
+    )
+    # with open("links.txt", "r") as f:
+    #     asyncio.run(fetcher(links=f.readlines()[1:10]))
