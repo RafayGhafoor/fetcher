@@ -8,6 +8,7 @@ from alive_progress import alive_bar
 import time
 import aiofiles
 import httpx
+import os
 import bs4
 import asyncio
 import re
@@ -82,17 +83,22 @@ async def parse_profile_page_info(link, progress):
 
 
 async def fetcher(links):
-
     total_links = len(links)
     with alive_bar(total_links) as bar:
         data = await asyncio.gather(
             *[parse_profile_page_info(url.strip(), progress=bar) for url in links]
         )
 
-        with open("01 - details_page.xml", "a") as f:
-            for info in data:
-                if not info:
-                    continue
+        for link_num, info in enumerate(data):
+            if not info:
+                continue
+            folder_name = links[link_num].split('/')[-1]
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)
+            
+            os.chdir(folder_name)
+            
+            with open("01 - details_page.xml", "a") as f:
                 f.write("<item>\n")
                 for k, v in info.items():
                     if isinstance(v, dict):
@@ -111,17 +117,11 @@ async def fetcher(links):
                     else:
                         f.write(f"<link>{v}</link>\n")
                 f.write("</item>\n\n")
+            os.chdir('..')
 
     await client.aclose()
 
 
 if __name__ == "__main__":
-    asyncio.run(
-        fetcher(
-            [
-                "https://www.bedrijfsovernameregister.nl/bedrijven-te-koop-aangeboden/bosn14js154a/kleinschalig-universeel-garagebedrijf-te-koop-aangeboden"
-            ]
-        )
-    )
-    # with open("links.txt", "r") as f:
-    #     asyncio.run(fetcher(links=f.readlines()[1:10]))
+    with open("links.txt", "r") as f:
+        asyncio.run(fetcher(links=f.readlines()[1:10]))
