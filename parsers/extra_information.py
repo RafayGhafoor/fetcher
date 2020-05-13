@@ -9,7 +9,7 @@ client = httpx.AsyncClient(timeout=300)
 page_prefix = "extra-informatie"
 
 
-async def parse_extra_information(link):
+async def parse_extra_information(link, progress):
     try:
         resp = await client.get(f"{link}/{page_prefix}.html")
         soup = bs4.BeautifulSoup(resp.content, "lxml")

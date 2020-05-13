@@ -66,7 +66,7 @@ async def parse_short_term_improvements_component(html_content):
     return prettify(f"<{heading}>{xml_data}</{heading}>", "short_term_improvements")
 
 
-async def parse_numbers_page(link):
+async def parse_numbers_page(link, progress):
     try:
         resp = await client.get(f"{link}/{page_prefix}.html")
         soup = bs4.BeautifulSoup(resp.content, "lxml")
@@ -86,9 +86,13 @@ async def parse_numbers_page(link):
             meta_data["Korte termijn verbeteringen"]
         )
         return prettify(f"{details_info}\n{facts_info}\n{sti_info}\n", "numbers")
+    
     except Exception as e:
-        print(e)
+        with open(__file__ + ".log", "a") as f:
+            f.write(link + "\n")
 
+    finally:
+        progress()
 
 async def main(links):
     total_links = len(links)

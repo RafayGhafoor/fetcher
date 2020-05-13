@@ -9,7 +9,7 @@ client = httpx.AsyncClient(timeout=300)
 page_prefix = "kansen"
 
 
-async def parse_opportunities(link):
+async def parse_opportunities(link, progress):
     try:
         resp = await client.get(f"{link}/{page_prefix}.html")
         soup = bs4.BeautifulSoup(resp.content, "lxml")
