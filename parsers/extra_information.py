@@ -1,6 +1,8 @@
 import httpx
+import os
 import bs4
 import asyncio
+from alive_progress import alive_bar
 from utils import newlines_to_sentences, prettify
 
 client = httpx.AsyncClient(timeout=300)
@@ -29,7 +31,7 @@ async def main(links):
         data = await asyncio.gather(
             *[parse_extra_information(url.strip(), progress=bar) for url in links]
         )
-        for info in data:
+        for link_num, info in enumerate(data):
             if not info:
                 continue
             folder_name = links[link_num].split("/")[-1]

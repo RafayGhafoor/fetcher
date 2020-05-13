@@ -92,12 +92,12 @@ async def fetcher(links):
         for link_num, info in enumerate(data):
             if not info:
                 continue
-            folder_name = links[link_num].split('/')[-1]
+            folder_name = links[link_num].split("/")[-1]
             if not os.path.exists(folder_name):
                 os.makedirs(folder_name)
-            
+
             os.chdir(folder_name)
-            
+
             with open("01 - details_page.xml", "a") as f:
                 f.write("<item>\n")
                 for k, v in info.items():
@@ -117,11 +117,11 @@ async def fetcher(links):
                     else:
                         f.write(f"<link>{v}</link>\n")
                 f.write("</item>\n\n")
-            os.chdir('..')
+            os.chdir("..")
 
     await client.aclose()
 
 
 if __name__ == "__main__":
     with open("links.txt", "r") as f:
-        asyncio.run(fetcher(links=f.readlines()[1:10]))
+        asyncio.run(fetcher(links=f.readlines()))

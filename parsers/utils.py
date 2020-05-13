@@ -3,7 +3,7 @@ import re
 
 
 def normalize_text(text):
-    return "_".join(re.findall("\w+", text))
+    return "_".join(re.findall(r"\w+", text))
 
 
 def newlines_to_sentences(text):

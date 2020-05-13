@@ -1,5 +1,5 @@
-
 from alive_progress import alive_bar
+import os
 import httpx
 import bs4
 import asyncio
@@ -39,23 +39,22 @@ async def main(links):
     total_links = len(links)
     with alive_bar(total_links) as bar:
         data = await asyncio.gather(
-            *[parse_strenghts(url.strip(), progress=bar) for url in links]
+            *[parse_strengths(url.strip(), progress=bar) for url in links]
         )
-        for info in data:
+        for link_num, info in enumerate(data):
             if not info:
                 continue
-            folder_name = links[link_num].split('/')[-1]
+            folder_name = links[link_num].split("/")[-1]
             if not os.path.exists(folder_name):
                 os.makedirs(folder_name)
-            
+
             os.chdir(folder_name)
-            
+
             with open("04 - " + __file__.replace(".py", ".xml"), "w") as f:
                 f.write(info)
-            os.chdir('..')
+            os.chdir("..")
 
 
 if __name__ == "__main__":
     with open("links.txt", "r") as f:
         asyncio.run(main(f.readlines()))
-

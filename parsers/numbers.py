@@ -1,4 +1,6 @@
 import httpx
+import os
+from alive_progress import alive_bar
 import bs4
 import asyncio
 from utils import newlines_to_sentences, prettify, normalize_text
@@ -88,12 +90,26 @@ async def parse_numbers_page(link):
         print(e)
 
 
-async def main():
-    link = "https://www.bedrijfsovernameregister.nl/bedrijven-te-koop-aangeboden/bosn14js154a/kleinschalig-universeel-garagebedrijf-te-koop-aangeboden"
-    info = await parse_numbers_page(link)
-    with open("02 - " + __file__.replace(".py", ".xml"), "w") as f:
-        f.write(info)
+async def main(links):
+    total_links = len(links)
+    with alive_bar(total_links) as bar:
+        data = await asyncio.gather(
+            *[parse_numbers_page(url.strip(), progress=bar) for url in links]
+        )
+        for link_num, info in enumerate(data):
+            if not info:
+                continue
+            folder_name = links[link_num].split("/")[-1]
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)
+
+            os.chdir(folder_name)
+
+            with open("02 - " + __file__.replace(".py", ".xml"), "w") as f:
+                f.write(info)
+            os.chdir("..")
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    with open("links.txt", "r") as f:
+        asyncio.run(main(f.readlines()))
