@@ -427,7 +427,7 @@ async def runner(data_folder="data"):
 
         os.chdir("..")
 
-        with open("sample.xml", "wb") as f:
+        with open("data.xml", "wb") as f:
             f.write(text)
 
         os.rmdir(data_folder)
