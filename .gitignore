@@ -1,1 +1,5 @@
 .mypy_cache
+*.xml
+__pycache__
+links.txt
+data/
