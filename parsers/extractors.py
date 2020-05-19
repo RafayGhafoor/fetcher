@@ -413,6 +413,7 @@ async def runner(data_folder="data"):
         text = b""
 
         for i in os.listdir("."):
+            if i.endswith('.log'): continue
             os.chdir(i)
 
             for page_num, j in enumerate(sorted(os.listdir(".")), 1):
