@@ -430,7 +430,7 @@ async def runner(data_folder="data"):
         with open("data.xml", "wb") as f:
             f.write(text)
 
-        os.rmdir(data_folder)
+        os.remove(data_folder)
 
 
 if __name__ == "__main__":

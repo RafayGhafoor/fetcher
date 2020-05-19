@@ -1,0 +1,184 @@
+<behind_the_scenes>
+ <stat>
+  <description>
+   Dit reviewplatform heeft veel grote klanten
+  </description>
+  <value>
+   0.0
+  </value>
+  <description>
+   Dit reviewplatform heeft weinig grote klanten
+  </description>
+  <value>
+   10.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   De bedrijfscultuur is formeel
+  </description>
+  <value>
+   1.2
+  </value>
+  <description>
+   De bedrijfscultuur is informeel
+  </description>
+  <value>
+   8.8
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit reviewplatform exporteert
+  </description>
+  <value>
+   4.9
+  </value>
+  <description>
+   Dit reviewplatform is regionaal of in Nederland actief
+  </description>
+  <value>
+   5.1
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Medewerkers zijn zeer betrokken
+  </description>
+  <value>
+   5.0
+  </value>
+  <description>
+   Er geldt een 9 tot 5 mentaliteit
+  </description>
+  <value>
+   5.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   De medewerkers zijn relatief 'oud'
+  </description>
+  <value>
+   5.0
+  </value>
+  <description>
+   De medewerkers zijn relatief 'jong'
+  </description>
+  <value>
+   5.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   De markt van dit reviewplatform groeit
+  </description>
+  <value>
+   5.9
+  </value>
+  <description>
+   De markt van dit reviewplatform krimpt
+  </description>
+  <value>
+   4.1
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit reviewplatform heeft langdurige relaties met klanten
+  </description>
+  <value>
+   6.9
+  </value>
+  <description>
+   Dit reviewplatform kent zijn klanten nauwelijks
+  </description>
+  <value>
+   3.1
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Het aantal klanten stijgt
+  </description>
+  <value>
+   7.2
+  </value>
+  <description>
+   Het aantal klanten daalt
+  </description>
+  <value>
+   2.8
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Door unieke toegevoegde waarde speelt prijs geen rol
+  </description>
+  <value>
+   7.7
+  </value>
+  <description>
+   Klanten kopen vanwege 'lage' prijzen bij dit bedrijf
+  </description>
+  <value>
+   2.3
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit reviewplatform is kennisintensief
+  </description>
+  <value>
+   8.5
+  </value>
+  <description>
+   Dit reviewplatform is arbeidsintensief
+  </description>
+  <value>
+   1.5
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit reviewplatform heeft veel kleine klanten
+  </description>
+  <value>
+   9.3
+  </value>
+  <description>
+   Dit reviewplatform heeft weinig kleine klanten
+  </description>
+  <value>
+   0.7
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Er zijn terugkerende klanten
+  </description>
+  <value>
+   9.4
+  </value>
+  <description>
+   Klanten kopen eenmalig
+  </description>
+  <value>
+   0.6
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Dit reviewplatform is innovatief
+  </description>
+  <value>
+   9.7
+  </value>
+  <description>
+   Dit reviewplatform is ambachtelijk
+  </description>
+  <value>
+   0.3
+  </value>
+ </stat>
+</behind_the_scenes>

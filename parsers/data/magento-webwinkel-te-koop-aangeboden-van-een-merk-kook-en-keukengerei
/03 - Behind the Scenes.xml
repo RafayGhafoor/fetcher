@@ -1,0 +1,184 @@
+<behind_the_scenes>
+ <stat>
+  <description>
+   De bedrijfscultuur is formeel
+  </description>
+  <value>
+   0.6
+  </value>
+  <description>
+   De bedrijfscultuur is informeel
+  </description>
+  <value>
+   9.4
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Deze webwinkel heeft langdurige relaties met klanten
+  </description>
+  <value>
+   1.8
+  </value>
+  <description>
+   Deze webwinkel kent zijn klanten nauwelijks
+  </description>
+  <value>
+   8.2
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Deze webwinkel heeft veel grote klanten
+  </description>
+  <value>
+   1.9
+  </value>
+  <description>
+   Deze webwinkel heeft weinig grote klanten
+  </description>
+  <value>
+   8.1
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Door unieke toegevoegde waarde speelt prijs geen rol
+  </description>
+  <value>
+   2.4
+  </value>
+  <description>
+   Klanten kopen vanwege 'lage' prijzen bij dit bedrijf
+  </description>
+  <value>
+   7.6
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Deze webwinkel exporteert
+  </description>
+  <value>
+   4.4
+  </value>
+  <description>
+   Deze webwinkel is regionaal of in Nederland actief
+  </description>
+  <value>
+   5.6
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Medewerkers zijn zeer betrokken
+  </description>
+  <value>
+   5.0
+  </value>
+  <description>
+   Er geldt een 9 tot 5 mentaliteit
+  </description>
+  <value>
+   5.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   De medewerkers zijn relatief 'oud'
+  </description>
+  <value>
+   5.0
+  </value>
+  <description>
+   De medewerkers zijn relatief 'jong'
+  </description>
+  <value>
+   5.0
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Het aantal klanten stijgt
+  </description>
+  <value>
+   5.3
+  </value>
+  <description>
+   Het aantal klanten daalt
+  </description>
+  <value>
+   4.7
+  </value>
+ </stat>
+ <stat>
+  <description>
+   De markt van deze webwinkel groeit
+  </description>
+  <value>
+   5.4
+  </value>
+  <description>
+   De markt van deze webwinkel krimpt
+  </description>
+  <value>
+   4.6
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Er zijn terugkerende klanten
+  </description>
+  <value>
+   5.7
+  </value>
+  <description>
+   Klanten kopen eenmalig
+  </description>
+  <value>
+   4.3
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Deze webwinkel is innovatief
+  </description>
+  <value>
+   6.4
+  </value>
+  <description>
+   Deze webwinkel is ambachtelijk
+  </description>
+  <value>
+   3.6
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Deze webwinkel is kennisintensief
+  </description>
+  <value>
+   8.5
+  </value>
+  <description>
+   Deze webwinkel is arbeidsintensief
+  </description>
+  <value>
+   1.5
+  </value>
+ </stat>
+ <stat>
+  <description>
+   Deze webwinkel heeft veel kleine klanten
+  </description>
+  <value>
+   8.9
+  </value>
+  <description>
+   Deze webwinkel heeft weinig kleine klanten
+  </description>
+  <value>
+   1.1
+  </value>
+ </stat>
+</behind_the_scenes>
