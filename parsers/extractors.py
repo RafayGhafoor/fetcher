@@ -1,4 +1,5 @@
 from alive_progress import alive_bar
+import shutil
 import httpx
 import os
 import bs4
@@ -431,7 +432,11 @@ async def runner(data_folder="data"):
         with open("data.xml", "wb") as f:
             f.write(text)
 
-        os.remove(data_folder)
+        
+        try:
+            shutil.rmtree(data_folder)
+        except OSError as e:
+            print("Error: %s : %s" % (dir_path, e.strerror))
 
 
 if __name__ == "__main__":
