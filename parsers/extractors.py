@@ -49,7 +49,9 @@ async def parse_profile_page_info(link, progress):
 
         soup = bs4.BeautifulSoup(resp.content, "lxml")
 
-        info_index = soup.find("div", attrs={"id": "profiel"}, class_="profile-columns")
+        info_index = soup.find(
+            "div", attrs={"id": "profiel"}, class_="profile-columns"
+        )
 
         categories = list(map(lambda x: x.text, info_index.findAll("h3")))
 
@@ -231,7 +233,9 @@ async def parse_numbers_page(link, progress):
     try:
         resp = await client.get(f"{link}/cijfers.html")
         soup = bs4.BeautifulSoup(resp.content, "lxml")
-        info_index = soup.find("div", attrs={"id": "cijfers"}, class_="profile-columns")
+        info_index = soup.find(
+            "div", attrs={"id": "cijfers"}, class_="profile-columns"
+        )
 
         categories = list(map(lambda x: x.text.strip(), info_index.findAll("h3")))
 
@@ -364,7 +368,10 @@ async def runner(data_folder="data"):
         print(">>> Fetching Numbers Page")
 
         await fetcher(
-            links=text_stream, parser=parse_numbers_page, index=2, file_name="Numbers",
+            links=text_stream,
+            parser=parse_numbers_page,
+            index=2,
+            file_name="Numbers",
         )
 
         print(">>> Fetching Behind the Scenes Page")
@@ -379,7 +386,10 @@ async def runner(data_folder="data"):
         print(">>> Fetching Strengths Page")
 
         await fetcher(
-            links=text_stream, parser=parse_strengths, index=4, file_name="Strengths",
+            links=text_stream,
+            parser=parse_strengths,
+            index=4,
+            file_name="Strengths",
         )
 
         print(">>> Fetching Opportunities Page")
@@ -419,7 +429,7 @@ async def runner(data_folder="data"):
 
         with open("sample.xml", "wb") as f:
             f.write(text)
-            
+
         os.rmdir(data_folder)
 
 
